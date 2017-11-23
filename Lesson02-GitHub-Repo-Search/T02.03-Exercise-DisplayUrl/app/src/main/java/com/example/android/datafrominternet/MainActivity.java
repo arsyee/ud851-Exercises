@@ -18,7 +18,6 @@ package com.example.android.datafrominternet;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -51,11 +50,7 @@ public class MainActivity extends AppCompatActivity {
     // COMPLETED (2) Create a method called makeGithubSearchQuery
     protected void makeGithubSearchQuery() {
         // COMPLETED (3) Within this method, build the URL with the text from the EditText and set the built URL to the TextView
-        try {
-            mUrlDisplayTextView.setText(NetworkUtils.buildUrl(mSearchBoxEditText.getText().toString()).toString());
-        } catch (MalformedURLException e) {
-            Log.e(MainActivity.class.toString(), e.toString());
-        }
+        mUrlDisplayTextView.setText(NetworkUtils.buildUrl(mSearchBoxEditText.getText().toString()).toString());
     }
 
     @Override
