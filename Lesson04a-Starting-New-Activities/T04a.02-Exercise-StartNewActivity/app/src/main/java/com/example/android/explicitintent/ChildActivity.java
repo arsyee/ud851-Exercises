@@ -31,5 +31,7 @@ public class ChildActivity extends AppCompatActivity {
 
         /* Typical usage of findViewById... */
         mDisplayText = (TextView) findViewById(R.id.tv_display);
+        mDisplayText.setText(getIntent().getStringExtra("message"));
     }
+
 }

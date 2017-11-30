@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // COMPLETED (2) Create an Intent to start ChildActivity
                 Intent intent = new Intent(MainActivity.this, ChildActivity.class);
+                intent.putExtra("message", mNameEntry.getText().toString());
 
                 // COMPLETED (3) Replace the Toast with code to start ChildActivity
                 startActivity(intent);
