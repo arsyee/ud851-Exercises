@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
         // COMPLETED (5) Store an address in a String
         String address = "Budapest, Gyömrői Way 104, Hungary";
         // COMPLETED (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
-        Uri geoLocation = Uri.parse("geo:0,0?")
-                .buildUpon()
-                .appendQueryParameter("q", address)
-                .appendQueryParameter("z", Integer.toString(10))
-                .build();
+        Uri geoLocation = Uri.parse("geo:0,0?q="+Uri.encode(address)+"&z=10");
+//                .buildUpon()
+//                .appendQueryParameter("q", address)
+//                .appendQueryParameter("z", Integer.toString(10))
+//                .build();
         Log.d(MainActivity.class.toString(), geoLocation.toString());
         // COMPLETED (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
         //Toast.makeText(this, "TODO: Open a map when this button is clicked", Toast.LENGTH_SHORT).show();
