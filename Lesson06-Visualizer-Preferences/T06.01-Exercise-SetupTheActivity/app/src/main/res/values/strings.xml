@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Visualize</string>
 
-    <!-- TODO (4) Add string for Settings -->
+    <!-- COMPLETED (4) Add string for Settings -->
     <string name="title_activity_settings">Settings</string>
 
     <!-- - - - - - - - - - - - - - - -
