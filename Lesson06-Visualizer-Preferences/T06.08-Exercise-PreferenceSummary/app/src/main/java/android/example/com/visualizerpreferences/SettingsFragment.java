@@ -24,6 +24,7 @@ import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
 import android.widget.Toast;
 
@@ -36,9 +37,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Add visualizer preferences, defined in the XML file in res->xml->pref_visualizer
         addPreferencesFromResource(R.xml.pref_visualizer);
 
-        // TODO (3) Get the preference screen, get the number of preferences and iterate through
+        // COMPLETED (3) Get the preference screen, get the number of preferences and iterate through
         // all of the preferences if it is not a checkbox preference, call the setSummary method
         // passing in a preference and the value of the preference
+        SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); ++i) {
+            Preference preference = getPreferenceScreen().getPreference(i);
+            if (preference instanceof ListPreference) {
+                setPreferenceSummary(preference, sharedPreferences.getString(preference.getKey(), null));
+            }
+        }
     }
 
     // TODO (4) Override onSharedPreferenceChanged and, if it is not a checkbox preference,
@@ -51,7 +59,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private void setPreferenceSummary(Preference preference, String value) {
         if (preference instanceof ListPreference) {
             ListPreference listPreference = (ListPreference) preference;
-            CharSequence label = listPreference.getEntries()[listPreference.findIndexOfValue(listPreference.getValue())];
+            CharSequence label = listPreference.getEntries()[listPreference.findIndexOfValue(value)];
             listPreference.setSummary(label);
         }
     }
