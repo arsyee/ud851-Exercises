@@ -128,7 +128,7 @@ public class VisualizerActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.visualizer_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     // COMPLETED (6) When the "Settings" menu item is pressed, open SettingsActivity
