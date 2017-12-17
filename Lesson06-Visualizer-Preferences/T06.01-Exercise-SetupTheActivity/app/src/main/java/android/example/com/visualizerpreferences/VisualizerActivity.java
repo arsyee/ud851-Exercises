@@ -115,7 +115,7 @@ public class VisualizerActivity extends AppCompatActivity {
         }
     }
 
-    // TODO (1) Create a new Empty Activity named SettingsActivity; make sure to generate the
+    // COMPLETED (1) Create a new Empty Activity named SettingsActivity; make sure to generate the
     // activity_settings.xml layout file as well and add the activity to the manifest
 
     // TODO (2) Add a new resource folder called menu and create visualizer_menu.xml
