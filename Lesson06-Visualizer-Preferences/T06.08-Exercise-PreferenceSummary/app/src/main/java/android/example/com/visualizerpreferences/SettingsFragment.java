@@ -43,14 +43,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
         SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); ++i) {
             Preference preference = getPreferenceScreen().getPreference(i);
-            if (preference instanceof ListPreference) {
+            if (!(preference instanceof CheckBoxPreference)) {
                 setPreferenceSummary(preference, sharedPreferences.getString(preference.getKey(), null));
             }
         }
     }
-
-    // TODO (4) Override onSharedPreferenceChanged and, if it is not a checkbox preference,
-    // call setPreferenceSummary on the changed preference
 
     // COMPLETED (2) Create a setPreferenceSummary which takes a Preference and String value as parameters.
     // This method should check if the preference is a ListPreference and, if so, find the label
@@ -64,9 +61,14 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
         }
     }
 
+    // COMPLETED (4) Override onSharedPreferenceChanged and, if it is not a checkbox preference,
+    // call setPreferenceSummary on the changed preference
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
+        Preference preference = findPreference(key);
+        if (!(preference instanceof CheckBoxPreference)) {
+            setPreferenceSummary(preference, sharedPreferences.getString(preference.getKey(), null));
+        }
     }
 
     // COMPLETED (5) Register and unregister the OnSharedPreferenceChange listener (this class) in
