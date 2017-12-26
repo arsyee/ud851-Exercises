@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.android.waitlist.data.WaitlistContract;
+
 
 public class GuestListAdapter extends RecyclerView.Adapter<GuestListAdapter.GuestViewHolder> {
 
     private Context mContext;
     // COMPLETED (8) Add a new local variable mCount to store the count of items to be displayed in the recycler view
     private int mCount;
+    private Cursor mCursor;
 
     /**
      * Constructor using the context and the db cursor
@@ -37,7 +40,9 @@ public class GuestListAdapter extends RecyclerView.Adapter<GuestListAdapter.Gues
 
     @Override
     public void onBindViewHolder(GuestViewHolder holder, int position) {
-
+        mCursor.moveToPosition(position);
+        ((TextView)holder.itemView.findViewById(R.id.name_text_view)).setText(mCursor.getString(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_GUEST_NAME)));
+        ((TextView)holder.itemView.findViewById(R.id.party_size_text_view)).setText(mCursor.getString(mCursor.getColumnIndex(WaitlistContract.WaitlistEntry.COLUMN_PARTY_SIZE)));
     }
 
     // COMPLETED (11) Modify the getItemCount to return the mCount value rather than 0
@@ -48,8 +53,9 @@ public class GuestListAdapter extends RecyclerView.Adapter<GuestListAdapter.Gues
 
     public void setCursor(Cursor cursor) {
         mCount = cursor.getCount();
+        mCursor = cursor;
+        notifyDataSetChanged();
     }
-
 
     /**
      * Inner class to hold the views needed to display a single item in the recycler-view

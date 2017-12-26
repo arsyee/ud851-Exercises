@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         // COMPLETED (7) Run the getAllGuests function and store the result in a Cursor variable
         Cursor cursor = getAllGuests();
 
-        // TODO (12) Pass the resulting cursor count to the adapter
+        // COMPLETED (12) Pass the resulting cursor count to the adapter
         mAdapter.setCursor(cursor);
 
         // Link the adapter to the RecyclerView
