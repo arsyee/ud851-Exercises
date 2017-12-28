@@ -61,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_next);
 
         // COMPLETED (5) Create and execute your AsyncTask here
-        new LoadDataTask().execute(this);
+        new LoadDataTask(new AsyncResponse() {
+            @Override
+            public void processFinish(Cursor cursor) {
+                mData = cursor;
+            }
+        }).execute(this);
     }
 
     /**
@@ -101,10 +106,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public interface AsyncResponse {
+        void processFinish(Cursor cursor);
+    }
+
     // COMPLETED (1) Create AsyncTask with the following generic types <Void, Void, Cursor>
     private static class LoadDataTask extends AsyncTask<MainActivity, Void, Cursor> {
-        @SuppressLint("StaticFieldLeak")
-        private MainActivity parent = null;
+        AsyncResponse delegate = null;
+
+        LoadDataTask(AsyncResponse delegate) {
+            this.delegate = delegate;
+        }
 
         @Override
         protected Cursor doInBackground(MainActivity... params) {
@@ -112,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "LoadDataTask expects exactly one MainActivity");
                 return null;
             }
-            parent = params[0];
+            MainActivity parent = params[0];
             // COMPLETED (2) In the doInBackground method, write the code to access the DroidTermsExample
             // provider and return the Cursor object
             return parent.getContentResolver().query(DroidTermsExampleContract.CONTENT_URI, null, null, null, null);
@@ -126,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
             }
             // COMPLETED (4) In the onPostExecute method, store the Cursor object in mData
             Log.d(TAG, "Data received from ContentProvider: " + cursor.getCount() + " lines.");
-            parent.mData = cursor;
-            parent = null; // release reference from static context
+            delegate.processFinish(cursor);
         }
     }
 
