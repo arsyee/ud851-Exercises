@@ -16,6 +16,7 @@
 
 package com.udacity.example.quizexample;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -60,18 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mButton = (Button) findViewById(R.id.button_next);
 
         // COMPLETED (5) Create and execute your AsyncTask here
-        new AsyncTask<Void, Void, Cursor>() {
-            @Override
-            protected Cursor doInBackground(Void... voids) {
-                return getContentResolver().query(DroidTermsExampleContract.CONTENT_URI, null, null, null, null);
-            }
-
-            @Override
-            protected void onPostExecute(Cursor cursor) {
-                Log.d(TAG, "Data received from ContentProvider: " + cursor.getCount() + " lines.");
-                mData = cursor;
-            }
-        }.execute();
+        new LoadDataTask().execute(this);
     }
 
     /**
@@ -112,8 +102,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // COMPLETED (1) Create AsyncTask with the following generic types <Void, Void, Cursor>
-    // COMPLETED (2) In the doInBackground method, write the code to access the DroidTermsExample
-    // provider and return the Cursor object
-    // COMPLETED (4) In the onPostExecute method, store the Cursor object in mData
+    private static class LoadDataTask extends AsyncTask<MainActivity, Void, Cursor> {
+        @SuppressLint("StaticFieldLeak")
+        private MainActivity parent = null;
+
+        @Override
+        protected Cursor doInBackground(MainActivity... params) {
+            if (params.length != 1) {
+                Log.e(TAG, "LoadDataTask expects exactly one MainActivity");
+                return null;
+            }
+            parent = params[0];
+            // COMPLETED (2) In the doInBackground method, write the code to access the DroidTermsExample
+            // provider and return the Cursor object
+            return parent.getContentResolver().query(DroidTermsExampleContract.CONTENT_URI, null, null, null, null);
+        }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            if (cursor == null) {
+                Log.e(TAG, "LoadDataTask.onPostExecute received a null Cursor!");
+                return;
+            }
+            // COMPLETED (4) In the onPostExecute method, store the Cursor object in mData
+            Log.d(TAG, "Data received from ContentProvider: " + cursor.getCount() + " lines.");
+            parent.mData = cursor;
+            parent = null; // release reference from static context
+        }
+    }
 
 }
