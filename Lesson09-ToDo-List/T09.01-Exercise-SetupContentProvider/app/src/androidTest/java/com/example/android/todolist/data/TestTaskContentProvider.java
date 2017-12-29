@@ -99,11 +99,10 @@ public class TestTaskContentProvider {
 
             /* Make sure that the registered authority matches the authority from the Contract */
             String incorrectAuthority =
-                    "Error: TaskContentProvider registered with authority: " + actualAuthority +
-                            " instead of expected authority: " + expectedAuthority;
+                    "Error: TaskContentProvider registered with unexpected authority";
             assertEquals(incorrectAuthority,
-                    actualAuthority,
-                    expectedAuthority);
+                    expectedAuthority,
+                    actualAuthority);
 
         } catch (PackageManager.NameNotFoundException e) {
             String providerNotRegisteredAtAll =
