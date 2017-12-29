@@ -19,6 +19,7 @@ package com.example.android.todolist;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 
 
@@ -27,11 +28,23 @@ public class AddTaskActivity extends AppCompatActivity {
     // Declare a member variable to keep track of a task's selected mPriority
     private int mPriority;
 
+    RadioButton rPriority1;
+    RadioButton rPriority2;
+    RadioButton rPriority3;
+    Button bPriority1;
+    Button bPriority2;
+    Button bPriority3;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        rPriority1 = (RadioButton) findViewById(R.id.radButton1);
+        rPriority2 = (RadioButton) findViewById(R.id.radButton2);
+        rPriority3 = (RadioButton) findViewById(R.id.radButton3);
+        bPriority1 = (Button) findViewById(R.id.buttonP1);
+        bPriority2 = (Button) findViewById(R.id.buttonP2);
+        bPriority3 = (Button) findViewById(R.id.buttonP3);
         // Initialize to highest mPriority by default (mPriority = 1)
         ((RadioButton) findViewById(R.id.radButton1)).setChecked(true);
         mPriority = 1;
@@ -52,11 +65,19 @@ public class AddTaskActivity extends AppCompatActivity {
      * It changes the value of mPriority based on the selected button.
      */
     public void onPrioritySelected(View view) {
-        if (((RadioButton) findViewById(R.id.radButton1)).isChecked()) {
+        if (view.equals(bPriority1)) {
+            rPriority1.setChecked(true);
+        } else if (view.equals(bPriority2)) {
+            rPriority2.setChecked(true);
+        } else if (view.equals(bPriority3)) {
+            rPriority3.setChecked(true);
+        }
+
+        if (rPriority1.isChecked()) {
             mPriority = 1;
-        } else if (((RadioButton) findViewById(R.id.radButton2)).isChecked()) {
+        } else if (rPriority2.isChecked()) {
             mPriority = 2;
-        } else if (((RadioButton) findViewById(R.id.radButton3)).isChecked()) {
+        } else if (rPriority3.isChecked()) {
             mPriority = 3;
         }
     }
