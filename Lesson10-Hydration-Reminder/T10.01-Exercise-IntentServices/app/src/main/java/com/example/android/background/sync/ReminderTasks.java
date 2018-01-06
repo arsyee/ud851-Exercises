@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.android.background.utilities.PreferenceUtilities;
 
 // COMPLETED (1) Create a class called ReminderTasks
-class ReminderTasks {
+public class ReminderTasks {
 
     // COMPLETED (2) Create a public static constant String called ACTION_INCREMENT_WATER_COUNT
     public static final String ACTION_INCREMENT_WATER_COUNT = "increment_water_count";
