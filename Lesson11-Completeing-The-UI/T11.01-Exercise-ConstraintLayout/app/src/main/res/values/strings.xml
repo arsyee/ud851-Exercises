@@ -21,4 +21,7 @@
     <string name="seat">24A</string>
     <string name="countDownFormat" >%1$02d:%2$02d</string>
     <string name="timeFormat">hh:mm a</string>
+    <string name="divider">Divider</string>
+    <string name="barcode">Barcode</string>
+    <string name="table_heading_background">Table Heading Background</string>
 </resources>
