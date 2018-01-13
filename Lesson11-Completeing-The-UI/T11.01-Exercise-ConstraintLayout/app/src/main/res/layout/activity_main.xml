@@ -121,11 +121,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/art_plane"
         android:layout_marginBottom="16dp"
+        android:src="@drawable/art_plane"
+        app:layout_constraintBottom_toTopOf="@id/iv_divider"
         app:layout_constraintLeft_toLeftOf="@id/iv_divider"
-        app:layout_constraintRight_toRightOf="@id/iv_divider"
-        app:layout_constraintBottom_toTopOf="@id/iv_divider"/>
+        app:layout_constraintRight_toRightOf="@id/iv_divider"/>
 
     <!-- COMPLETED (10) Create a TextView for the time texts and their corresponding labels -->
     <TextView
@@ -286,38 +286,38 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/terminal"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_table_body"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="@id/iv_table_body"
         app:layout_constraintRight_toRightOf="@id/iv_table_body"
-        app:layout_constraintTop_toTopOf="@id/iv_table_body"/>
+        app:layout_constraintTop_toTopOf="@id/iv_table_body"
+        tools:text="@string/terminal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/gate"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_table_body"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="@id/iv_table_body"
         app:layout_constraintRight_toRightOf="@id/iv_table_body"
-        app:layout_constraintTop_toTopOf="@id/iv_table_body"/>
+        app:layout_constraintTop_toTopOf="@id/iv_table_body"
+        tools:text="@string/gate"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/seat"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_table_body"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintLeft_toLeftOf="@id/iv_table_body"
         app:layout_constraintRight_toRightOf="@id/iv_table_body"
-        app:layout_constraintTop_toTopOf="@id/iv_table_body"/>
+        app:layout_constraintTop_toTopOf="@id/iv_table_body"
+        tools:text="@string/seat"/>
 
     <!-- COMPLETED (14) Create an ImageView for the barcode -->
     <ImageView
